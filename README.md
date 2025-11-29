@@ -16,7 +16,6 @@ This project implements a hardware-in-the-loop (HIL) orbital simulation using **
 - 📐 *Scientific validation against MATLAB models and academic feedback*
 
 ✔ **Developed as part of the “Physics of Space Systems” course (EP 615.744) at Johns Hopkins University.**  
-✔ Received **strong academic endorsement** from the course instructor (formerly NASA).  
 ✔ Preparing for **live demo at the NASA JPL F Prime Workshop – February 2026**.
 
 ---
