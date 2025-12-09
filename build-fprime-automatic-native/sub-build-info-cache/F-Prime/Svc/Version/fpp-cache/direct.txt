@@ -1,0 +1,6 @@
+/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/VersionCfg.fpp
+/home/pi/OrbitSim/fprime/Fw/Cmd/Cmd.fpp
+/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
+/home/pi/OrbitSim/fprime/Fw/Time/Time.fpp
+/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp
+/home/pi/OrbitSim/fprime/Svc/Ports/VersionPorts/VersionPorts.fpp

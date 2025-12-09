@@ -1,0 +1,6 @@
+/home/pi/OrbitSim/fprime/Fw/Cmd/Cmd.fpp
+/home/pi/OrbitSim/fprime/Fw/Com/Com.fpp
+/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
+/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp
+/home/pi/OrbitSim/fprime/Svc/Ping/Ping.fpp
+/home/pi/OrbitSim/fprime/Svc/Sched/Sched.fpp

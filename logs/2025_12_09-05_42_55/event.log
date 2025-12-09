@@ -1,0 +1,12 @@
+2025-12-09T05:43:30.348749,(2(0)-1765277010:348749),CdhCore.cmdDisp.OpCodeDispatched,16777217,EventSeverity.COMMAND,Opcode 0x200 dispatched to port 11
+2025-12-09T05:43:30.349045,(2(0)-1765277010:349045),OrbitSimDeployment.morseBlinker.Blinking,512,EventSeverity.ACTIVITY_HI,Morse Blinking: sos
+2025-12-09T05:43:36.351458,(2(0)-1765277016:351458),CdhCore.cmdDisp.OpCodeCompleted,16777218,EventSeverity.COMMAND,Opcode 0x200 completed
+2025-12-09T05:43:40.572080,(2(0)-1765277020:572080),CdhCore.cmdDisp.OpCodeDispatched,16777217,EventSeverity.COMMAND,Opcode 0x200 dispatched to port 11
+2025-12-09T05:43:40.572140,(2(0)-1765277020:572140),OrbitSimDeployment.morseBlinker.Blinking,512,EventSeverity.ACTIVITY_HI,Morse Blinking: sos
+2025-12-09T05:43:46.574039,(2(0)-1765277026:574039),CdhCore.cmdDisp.OpCodeCompleted,16777218,EventSeverity.COMMAND,Opcode 0x200 completed
+2025-12-09T05:46:19.260120,(2(0)-1765277179:260120),OrbitSimDeployment.morseBlinker.Blinking,512,EventSeverity.ACTIVITY_HI,Morse Blinking: sos
+2025-12-09T05:46:19.260389,(2(0)-1765277179:260389),CdhCore.cmdDisp.OpCodeDispatched,16777217,EventSeverity.COMMAND,Opcode 0x200 dispatched to port 11
+2025-12-09T05:46:25.262378,(2(0)-1765277185:262378),CdhCore.cmdDisp.OpCodeCompleted,16777218,EventSeverity.COMMAND,Opcode 0x200 completed
+2025-12-09T05:46:33.559551,(2(0)-1765277193:559551),CdhCore.cmdDisp.OpCodeDispatched,16777217,EventSeverity.COMMAND,Opcode 0x200 dispatched to port 11
+2025-12-09T05:46:33.559325,(2(0)-1765277193:559325),OrbitSimDeployment.morseBlinker.Blinking,512,EventSeverity.ACTIVITY_HI,Morse Blinking: sos
+2025-12-09T05:46:39.562377,(2(0)-1765277199:562377),CdhCore.cmdDisp.OpCodeCompleted,16777218,EventSeverity.COMMAND,Opcode 0x200 completed

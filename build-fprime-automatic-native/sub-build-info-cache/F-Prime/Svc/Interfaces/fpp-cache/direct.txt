@@ -1,0 +1,6 @@
+/home/pi/OrbitSim/fprime/Fw/Buffer/Buffer.fpp
+/home/pi/OrbitSim/fprime/Fw/Cmd/Cmd.fpp
+/home/pi/OrbitSim/fprime/Fw/Com/Com.fpp
+/home/pi/OrbitSim/fprime/Fw/Ports/SuccessCondition/SuccessCondition.fpp
+/home/pi/OrbitSim/fprime/Fw/Time/Time.fpp
+/home/pi/OrbitSim/fprime/Svc/Ports/CommsPorts/CommsPorts.fpp

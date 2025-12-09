@@ -1,0 +1,6 @@
+/home/pi/OrbitSim/fprime/Svc/FpySequencer/FpySequencerCommands.fppi
+/home/pi/OrbitSim/fprime/Svc/FpySequencer/FpySequencerDirectives.fppi
+/home/pi/OrbitSim/fprime/Svc/FpySequencer/FpySequencerEvents.fppi
+/home/pi/OrbitSim/fprime/Svc/FpySequencer/FpySequencerParams.fppi
+/home/pi/OrbitSim/fprime/Svc/FpySequencer/FpySequencerStateMachine.fppi
+/home/pi/OrbitSim/fprime/Svc/FpySequencer/FpySequencerTelemetry.fppi

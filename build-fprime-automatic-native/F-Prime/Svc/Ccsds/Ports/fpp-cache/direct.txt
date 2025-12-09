@@ -1,0 +1,2 @@
+/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/ComCfg.fpp
+/home/pi/OrbitSim/fprime/Svc/Ccsds/Types/Types.fpp

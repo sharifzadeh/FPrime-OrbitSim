@@ -1,0 +1,2 @@
+/home/pi/OrbitSim/fprime/Svc/FileUplink/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/FileUplink/Telemetry.fppi

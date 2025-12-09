@@ -1,0 +1,10 @@
+/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/FpConfig.fpp
+/home/pi/OrbitSim/build-fprime-automatic-native/cmake/platform/unix/Platform/PlatformTypes.fpp
+/home/pi/OrbitSim/fprime/Drv/ByteStreamDriverModel/ByteStreamDriverModel.fpp
+/home/pi/OrbitSim/fprime/Drv/Ports/GpioDriverPorts.fpp
+/home/pi/OrbitSim/fprime/Drv/Ports/I2cDriverPorts.fpp
+/home/pi/OrbitSim/fprime/Drv/Ports/SpiDriverPorts.fpp
+/home/pi/OrbitSim/fprime/Fw/Buffer/Buffer.fpp
+/home/pi/OrbitSim/fprime/Fw/Types/Types.fpp
+/home/pi/OrbitSim/fprime/Os/Types.fpp
+/home/pi/OrbitSim/fprime/Svc/Cycle/Cycle.fpp

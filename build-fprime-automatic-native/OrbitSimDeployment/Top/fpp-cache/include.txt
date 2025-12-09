@@ -1,0 +1,16 @@
+/home/pi/OrbitSim/fprime/Svc/AssertFatalAdapter/AssertFatalEvents.fppi
+/home/pi/OrbitSim/fprime/Svc/BufferManager/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/BufferManager/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/CmdSequencer/Commands.fppi
+/home/pi/OrbitSim/fprime/Svc/CmdSequencer/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/CmdSequencer/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/FileDownlink/Commands.fppi
+/home/pi/OrbitSim/fprime/Svc/FileDownlink/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/FileDownlink/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/FileManager/Commands.fppi
+/home/pi/OrbitSim/fprime/Svc/FileManager/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/FileManager/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/FileUplink/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/FileUplink/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDbCmdDict.fppi
+/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDbEventDict.fppi

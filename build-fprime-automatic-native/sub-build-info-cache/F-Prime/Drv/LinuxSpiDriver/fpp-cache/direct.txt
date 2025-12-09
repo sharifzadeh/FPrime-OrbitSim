@@ -1,0 +1,5 @@
+/home/pi/OrbitSim/fprime/Drv/Interfaces/Spi.fpp
+/home/pi/OrbitSim/fprime/Drv/LinuxSpiDriver/Events.fppi
+/home/pi/OrbitSim/fprime/Drv/LinuxSpiDriver/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
+/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp

@@ -1,0 +1,7 @@
+/home/pi/OrbitSim/fprime/Fw/Buffer/Buffer.fpp
+/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
+/home/pi/OrbitSim/fprime/Fw/Time/Time.fpp
+/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp
+/home/pi/OrbitSim/fprime/Svc/BufferManager/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/BufferManager/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/Sched/Sched.fpp

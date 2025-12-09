@@ -1,0 +1,8 @@
+/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/ComCfg.fpp
+/home/pi/OrbitSim/fprime/Fw/Buffer/Buffer.fpp
+/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
+/home/pi/OrbitSim/fprime/Fw/Time/Time.fpp
+/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp
+/home/pi/OrbitSim/fprime/Svc/FileUplink/Events.fppi
+/home/pi/OrbitSim/fprime/Svc/FileUplink/Telemetry.fppi
+/home/pi/OrbitSim/fprime/Svc/Ping/Ping.fpp

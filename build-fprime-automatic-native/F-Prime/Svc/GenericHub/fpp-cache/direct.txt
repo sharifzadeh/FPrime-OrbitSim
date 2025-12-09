@@ -1,0 +1,6 @@
+/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/GenericHubCfg.fpp
+/home/pi/OrbitSim/fprime/Drv/Interfaces/PassiveBufferDriverClient.fpp
+/home/pi/OrbitSim/fprime/Fw/Buffer/Buffer.fpp
+/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
+/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp
+/home/pi/OrbitSim/fprime/Svc/Interfaces/BufferAllocation.fpp
