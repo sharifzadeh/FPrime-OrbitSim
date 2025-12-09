@@ -42,3 +42,7 @@
 
 # Git Ignore Log Folders
 logs/
+
+build-artifacts/
+build-fprime-automatic-native/
+
