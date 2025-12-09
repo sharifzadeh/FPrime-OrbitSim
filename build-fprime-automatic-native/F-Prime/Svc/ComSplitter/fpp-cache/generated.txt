@@ -1,2 +1,0 @@
-ComSplitterComponentAc.cpp
-ComSplitterComponentAc.hpp

@@ -1,2 +1,0 @@
-FileManagerComponentAc.cpp
-FileManagerComponentAc.hpp

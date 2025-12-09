@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/BufferLogger/Commands.fppi
-/home/pi/OrbitSim/fprime/Svc/BufferLogger/Events.fppi
-/home/pi/OrbitSim/fprime/Svc/BufferLogger/Telemetry.fppi

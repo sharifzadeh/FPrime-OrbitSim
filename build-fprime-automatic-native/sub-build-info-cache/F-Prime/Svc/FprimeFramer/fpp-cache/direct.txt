@@ -1,2 +1,0 @@
-/home/pi/OrbitSim/fprime/Fw/Time/Time.fpp
-/home/pi/OrbitSim/fprime/Svc/Interfaces/Framer.fpp

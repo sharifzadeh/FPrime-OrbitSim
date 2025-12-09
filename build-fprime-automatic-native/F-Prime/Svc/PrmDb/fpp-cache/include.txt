@@ -1,2 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDbCmdDict.fppi
-/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDbEventDict.fppi

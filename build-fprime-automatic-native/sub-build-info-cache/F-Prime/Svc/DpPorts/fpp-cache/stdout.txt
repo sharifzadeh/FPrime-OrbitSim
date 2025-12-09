@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/AcConstants.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/FpConfig.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/cmake/platform/unix/Platform/PlatformTypes.fpp

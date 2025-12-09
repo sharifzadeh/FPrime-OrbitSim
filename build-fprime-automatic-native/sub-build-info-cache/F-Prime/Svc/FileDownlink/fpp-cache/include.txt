@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/FileDownlink/Commands.fppi
-/home/pi/OrbitSim/fprime/Svc/FileDownlink/Events.fppi
-/home/pi/OrbitSim/fprime/Svc/FileDownlink/Telemetry.fppi

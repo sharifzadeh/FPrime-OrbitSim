@@ -1,4 +1,0 @@
-/home/pi/OrbitSim/fprime/Fw/Types/Types.fpp
-/home/pi/OrbitSim/fprime/Svc/Interfaces/Framer.fpp
-/home/pi/OrbitSim/fprime/Svc/Ports/CommsPorts/CommsPorts.fpp
-/home/pi/OrbitSim/fprime/Svc/Sched/Sched.fpp

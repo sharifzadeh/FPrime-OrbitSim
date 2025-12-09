@@ -1,2 +1,0 @@
-SuccessConditionPortAc.cpp
-SuccessConditionPortAc.hpp

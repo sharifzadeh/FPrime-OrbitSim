@@ -1,2 +1,0 @@
-ByteStreamBufferAdapterComponentAc.cpp
-ByteStreamBufferAdapterComponentAc.hpp

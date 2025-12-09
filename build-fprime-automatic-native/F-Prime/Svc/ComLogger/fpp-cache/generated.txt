@@ -1,2 +1,0 @@
-ComLoggerComponentAc.cpp
-ComLoggerComponentAc.hpp

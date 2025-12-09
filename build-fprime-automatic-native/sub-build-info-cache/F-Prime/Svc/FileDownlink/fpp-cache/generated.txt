@@ -1,2 +1,0 @@
-FileDownlinkComponentAc.cpp
-FileDownlinkComponentAc.hpp

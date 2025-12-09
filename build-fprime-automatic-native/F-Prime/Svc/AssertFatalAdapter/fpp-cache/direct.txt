@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/AcConstants.fpp
-/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
-/home/pi/OrbitSim/fprime/Svc/AssertFatalAdapter/AssertFatalEvents.fppi

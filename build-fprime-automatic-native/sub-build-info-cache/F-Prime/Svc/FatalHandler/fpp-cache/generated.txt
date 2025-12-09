@@ -1,2 +1,0 @@
-FatalHandlerComponentAc.cpp
-FatalHandlerComponentAc.hpp

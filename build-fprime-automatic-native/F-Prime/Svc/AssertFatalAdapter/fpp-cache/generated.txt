@@ -1,2 +1,0 @@
-AssertFatalAdapterComponentAc.cpp
-AssertFatalAdapterComponentAc.hpp

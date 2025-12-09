@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/CmdSequencer/Commands.fppi
-/home/pi/OrbitSim/fprime/Svc/CmdSequencer/Events.fppi
-/home/pi/OrbitSim/fprime/Svc/CmdSequencer/Telemetry.fppi

@@ -1,2 +1,0 @@
-LinuxI2cDriverComponentAc.cpp
-LinuxI2cDriverComponentAc.hpp

@@ -1,2 +1,0 @@
-/home/pi/OrbitSim/fprime/Drv/Interfaces/PassiveBufferDriver.fpp
-/home/pi/OrbitSim/fprime/Drv/Interfaces/PassiveByteStreamDriverClient.fpp

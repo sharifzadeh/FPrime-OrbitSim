@@ -1,4 +1,0 @@
-BufferGetPortAc.cpp
-BufferGetPortAc.hpp
-BufferSendPortAc.cpp
-BufferSendPortAc.hpp

@@ -1,2 +1,0 @@
-MorseBlinkerComponentAc.cpp
-MorseBlinkerComponentAc.hpp

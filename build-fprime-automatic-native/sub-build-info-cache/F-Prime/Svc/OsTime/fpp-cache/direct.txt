@@ -1,4 +1,0 @@
-/home/pi/OrbitSim/fprime/Fw/Cmd/Cmd.fpp
-/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
-/home/pi/OrbitSim/fprime/Svc/Interfaces/Time.fpp
-/home/pi/OrbitSim/fprime/Svc/Ports/OsTimeEpoch/OsTimeEpoch.fpp

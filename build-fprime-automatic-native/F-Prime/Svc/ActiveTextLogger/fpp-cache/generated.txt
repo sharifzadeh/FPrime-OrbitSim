@@ -1,2 +1,0 @@
-ActiveTextLoggerComponentAc.cpp
-ActiveTextLoggerComponentAc.hpp

@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Drv/Interfaces/Gpio.fpp
-/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
-/home/pi/OrbitSim/fprime/Os/Models/File.fpp

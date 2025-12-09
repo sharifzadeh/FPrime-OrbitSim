@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/ComLogger/Commands.fppi
-/home/pi/OrbitSim/fprime/Svc/ComLogger/Events.fppi
-/home/pi/OrbitSim/fprime/Svc/Subtopologies/ComLoggerTee/subtopology-template.fppi

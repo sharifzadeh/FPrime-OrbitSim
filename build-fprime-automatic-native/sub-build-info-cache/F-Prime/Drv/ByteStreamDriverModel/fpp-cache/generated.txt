@@ -1,8 +1,0 @@
-ByteStreamDataPortAc.cpp
-ByteStreamDataPortAc.hpp
-ByteStreamReadyPortAc.cpp
-ByteStreamReadyPortAc.hpp
-ByteStreamSendPortAc.cpp
-ByteStreamSendPortAc.hpp
-ByteStreamStatusEnumAc.cpp
-ByteStreamStatusEnumAc.hpp

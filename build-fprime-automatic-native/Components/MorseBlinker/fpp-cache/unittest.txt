@@ -1,5 +1,0 @@
-MorseBlinkerGTestBase.cpp
-MorseBlinkerGTestBase.hpp
-MorseBlinkerTesterBase.cpp
-MorseBlinkerTesterBase.hpp
-MorseBlinkerTesterHelpers.cpp

@@ -1,6 +1,0 @@
-EventManagerComponentAc.cpp
-EventManagerComponentAc.hpp
-EventManager_EnabledEnumAc.cpp
-EventManager_EnabledEnumAc.hpp
-EventManager_FilterSeverityEnumAc.cpp
-EventManager_FilterSeverityEnumAc.hpp

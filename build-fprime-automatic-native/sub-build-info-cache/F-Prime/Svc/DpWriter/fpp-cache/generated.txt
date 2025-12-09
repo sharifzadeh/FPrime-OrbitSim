@@ -1,2 +1,0 @@
-DpWriterComponentAc.cpp
-DpWriterComponentAc.hpp

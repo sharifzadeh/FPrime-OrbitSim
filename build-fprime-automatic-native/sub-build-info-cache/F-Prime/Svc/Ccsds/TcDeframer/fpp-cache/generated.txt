@@ -1,2 +1,0 @@
-TcDeframerComponentAc.cpp
-TcDeframerComponentAc.hpp

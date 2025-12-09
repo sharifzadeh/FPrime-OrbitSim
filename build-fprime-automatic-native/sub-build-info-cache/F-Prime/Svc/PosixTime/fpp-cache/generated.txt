@@ -1,2 +1,0 @@
-PosixTimeComponentAc.cpp
-PosixTimeComponentAc.hpp

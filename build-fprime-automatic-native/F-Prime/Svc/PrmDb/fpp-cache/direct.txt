@@ -1,7 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/AcConstants.fpp
-/home/pi/OrbitSim/fprime/Fw/Cmd/Cmd.fpp
-/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
-/home/pi/OrbitSim/fprime/Fw/Prm/Prm.fpp
-/home/pi/OrbitSim/fprime/Svc/Ping/Ping.fpp
-/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDbCmdDict.fppi
-/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDbEventDict.fppi

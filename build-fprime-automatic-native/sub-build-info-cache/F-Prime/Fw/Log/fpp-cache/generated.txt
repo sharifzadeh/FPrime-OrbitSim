@@ -1,6 +1,0 @@
-LogPortAc.cpp
-LogPortAc.hpp
-LogSeverityEnumAc.cpp
-LogSeverityEnumAc.hpp
-LogTextPortAc.cpp
-LogTextPortAc.hpp

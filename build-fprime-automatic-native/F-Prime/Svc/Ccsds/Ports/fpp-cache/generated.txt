@@ -1,4 +1,0 @@
-ApidSequenceCountPortAc.cpp
-ApidSequenceCountPortAc.hpp
-ErrorNotifyPortAc.cpp
-ErrorNotifyPortAc.hpp

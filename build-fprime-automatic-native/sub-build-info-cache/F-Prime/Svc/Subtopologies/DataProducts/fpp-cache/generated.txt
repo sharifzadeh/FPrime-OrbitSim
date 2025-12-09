@@ -1,3 +1,0 @@
-SubtopologyTopologyAc.cpp
-SubtopologyTopologyAc.hpp
-SubtopologyTopologyDictionary.json

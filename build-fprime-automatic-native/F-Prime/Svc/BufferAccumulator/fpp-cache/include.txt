@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/BufferAccumulator/Commands.fppi
-/home/pi/OrbitSim/fprime/Svc/BufferAccumulator/Events.fppi
-/home/pi/OrbitSim/fprime/Svc/BufferAccumulator/Telemetry.fppi

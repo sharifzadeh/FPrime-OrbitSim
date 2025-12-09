@@ -1,8 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/Svc/Subtopologies/ComLoggerTee/ComLoggerTeeConfig/ComLoggerTeeConfig.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/ComCfg.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/DpCfg.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/FpConstants.fpp
-/home/pi/OrbitSim/fprime/Fw/Dp/Dp.fpp
-/home/pi/OrbitSim/fprime/Svc/ComLogger/ComLogger.fpp
-/home/pi/OrbitSim/fprime/Svc/ComSplitter/ComSplitter.fpp
-/home/pi/OrbitSim/fprime/Svc/Subtopologies/ComLoggerTee/subtopology-template.fppi

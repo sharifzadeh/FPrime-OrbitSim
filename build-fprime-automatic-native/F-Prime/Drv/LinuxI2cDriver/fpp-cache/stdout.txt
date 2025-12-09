@@ -1,5 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/FpConfig.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/cmake/platform/unix/Platform/PlatformTypes.fpp
-/home/pi/OrbitSim/fprime/Drv/Interfaces/I2c.fpp
-/home/pi/OrbitSim/fprime/Drv/Ports/I2cDriverPorts.fpp
-/home/pi/OrbitSim/fprime/Fw/Buffer/Buffer.fpp

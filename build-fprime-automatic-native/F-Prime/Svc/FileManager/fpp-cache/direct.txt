@@ -1,9 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/AcConstants.fpp
-/home/pi/OrbitSim/fprime/Fw/Cmd/Cmd.fpp
-/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
-/home/pi/OrbitSim/fprime/Fw/Tlm/Tlm.fpp
-/home/pi/OrbitSim/fprime/Svc/FileManager/Commands.fppi
-/home/pi/OrbitSim/fprime/Svc/FileManager/Events.fppi
-/home/pi/OrbitSim/fprime/Svc/FileManager/Telemetry.fppi
-/home/pi/OrbitSim/fprime/Svc/Ping/Ping.fpp
-/home/pi/OrbitSim/fprime/Svc/Sched/Sched.fpp

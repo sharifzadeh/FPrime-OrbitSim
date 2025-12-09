@@ -1,2 +1,0 @@
-TcpClientComponentAc.cpp
-TcpClientComponentAc.hpp

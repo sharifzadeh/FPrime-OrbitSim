@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Drv/Interfaces/Tick.fpp
-/home/pi/OrbitSim/fprime/Os/Types.fpp
-/home/pi/OrbitSim/fprime/Svc/Cycle/Cycle.fpp

@@ -1,2 +1,0 @@
-ActivePhaserComponentAc.cpp
-ActivePhaserComponentAc.hpp

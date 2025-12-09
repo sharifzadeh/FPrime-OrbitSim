@@ -1,8 +1,0 @@
-BuffQueueDepthArrayAc.cpp
-BuffQueueDepthArrayAc.hpp
-ComQueueComponentAc.cpp
-ComQueueComponentAc.hpp
-ComQueueDepthArrayAc.cpp
-ComQueueDepthArrayAc.hpp
-QueueTypeEnumAc.cpp
-QueueTypeEnumAc.hpp

@@ -1,2 +1,0 @@
-LinuxUartDriverComponentAc.cpp
-LinuxUartDriverComponentAc.hpp

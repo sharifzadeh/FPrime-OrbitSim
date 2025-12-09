@@ -1,2 +1,0 @@
-/home/pi/OrbitSim/fprime/Drv/LinuxUartDriver/Events.fppi
-/home/pi/OrbitSim/fprime/Drv/LinuxUartDriver/Telemetry.fppi

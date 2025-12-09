@@ -1,2 +1,0 @@
-RateGroupDriverComponentAc.cpp
-RateGroupDriverComponentAc.hpp

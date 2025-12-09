@@ -1,2 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/FatalHandler/FatalHandler.fpp
-/home/pi/OrbitSim/fprime/Svc/TlmChan/TlmChan.fpp

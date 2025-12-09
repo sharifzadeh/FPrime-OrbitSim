@@ -1,5 +1,0 @@
-ComAggregatorGTestBase.cpp
-ComAggregatorGTestBase.hpp
-ComAggregatorTesterBase.cpp
-ComAggregatorTesterBase.hpp
-ComAggregatorTesterHelpers.cpp

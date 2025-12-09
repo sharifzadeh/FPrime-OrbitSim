@@ -1,2 +1,0 @@
-UdpComponentAc.cpp
-UdpComponentAc.hpp

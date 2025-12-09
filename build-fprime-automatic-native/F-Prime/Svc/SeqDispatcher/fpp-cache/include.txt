@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Svc/SeqDispatcher/SeqDispatcherCommands.fppi
-/home/pi/OrbitSim/fprime/Svc/SeqDispatcher/SeqDispatcherEvents.fppi
-/home/pi/OrbitSim/fprime/Svc/SeqDispatcher/SeqDispatcherTelemetry.fppi

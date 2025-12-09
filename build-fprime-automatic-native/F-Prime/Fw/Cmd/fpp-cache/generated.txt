@@ -1,8 +1,0 @@
-CmdPortAc.cpp
-CmdPortAc.hpp
-CmdRegPortAc.cpp
-CmdRegPortAc.hpp
-CmdResponseEnumAc.cpp
-CmdResponseEnumAc.hpp
-CmdResponsePortAc.cpp
-CmdResponsePortAc.hpp

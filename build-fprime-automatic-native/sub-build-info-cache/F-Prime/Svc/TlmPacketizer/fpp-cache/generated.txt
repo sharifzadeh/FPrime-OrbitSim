@@ -1,2 +1,0 @@
-TlmPacketizerComponentAc.cpp
-TlmPacketizerComponentAc.hpp

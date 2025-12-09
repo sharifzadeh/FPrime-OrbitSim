@@ -1,4 +1,0 @@
-VersionPortAc.cpp
-VersionPortAc.hpp
-VersionStatusEnumAc.cpp
-VersionStatusEnumAc.hpp

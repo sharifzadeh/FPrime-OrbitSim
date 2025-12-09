@@ -1,2 +1,0 @@
-ComStubComponentAc.cpp
-ComStubComponentAc.hpp

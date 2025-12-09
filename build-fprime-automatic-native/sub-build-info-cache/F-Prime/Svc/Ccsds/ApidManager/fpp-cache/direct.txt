@@ -1,3 +1,0 @@
-/home/pi/OrbitSim/fprime/Fw/Log/Log.fpp
-/home/pi/OrbitSim/fprime/Fw/Time/Time.fpp
-/home/pi/OrbitSim/fprime/Svc/Ccsds/Ports/Ports.fpp

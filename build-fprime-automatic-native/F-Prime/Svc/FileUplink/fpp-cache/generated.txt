@@ -1,2 +1,0 @@
-FileUplinkComponentAc.cpp
-FileUplinkComponentAc.hpp

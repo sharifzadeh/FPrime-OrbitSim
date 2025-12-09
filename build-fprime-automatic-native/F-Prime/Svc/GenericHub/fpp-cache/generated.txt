@@ -1,2 +1,0 @@
-GenericHubComponentAc.cpp
-GenericHubComponentAc.hpp

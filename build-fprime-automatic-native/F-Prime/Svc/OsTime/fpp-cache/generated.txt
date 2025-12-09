@@ -1,2 +1,0 @@
-OsTimeComponentAc.cpp
-OsTimeComponentAc.hpp

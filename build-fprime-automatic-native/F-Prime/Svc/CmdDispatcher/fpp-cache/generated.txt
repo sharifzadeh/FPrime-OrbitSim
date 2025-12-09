@@ -1,2 +1,0 @@
-CommandDispatcherComponentAc.cpp
-CommandDispatcherComponentAc.hpp

@@ -1,9 +1,0 @@
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/Fpp/ToCpp.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/Svc/Subtopologies/FileHandling/FileHandlingConfig/FileHandlingConfig.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/DpCfg.fpp
-/home/pi/OrbitSim/build-fprime-automatic-native/F-Prime/default/config/FpConstants.fpp
-/home/pi/OrbitSim/fprime/Fw/Dp/Dp.fpp
-/home/pi/OrbitSim/fprime/Svc/FileDownlink/FileDownlink.fpp
-/home/pi/OrbitSim/fprime/Svc/FileManager/FileManager.fpp
-/home/pi/OrbitSim/fprime/Svc/FileUplink/FileUplink.fpp
-/home/pi/OrbitSim/fprime/Svc/PrmDb/PrmDb.fpp
