@@ -15,7 +15,7 @@ This project implements a hardware-in-the-loop (HIL) orbital simulation using **
 - 💡 Low-level C++ implementation for real-time processing  
 - 📐 Scientific validation against MATLAB models and academic feedback
 
-✔ Developed as part of the **“Physics of Space Systems” (EN.615.744)** course at **Johns Hopkins University (JHU EP)**.  
+✔ Developed as part of the **“Physics of Space Systems” (EN.615.744)** course at **Johns Hopkins University (JHU EP)**, taught by [Dr. Nathan Stacey](https://ep.jhu.edu/faculty/nathan-stacey/).
 ✔ Serving as a stepping stone toward a **live demo at the NASA JPL F´ Workshop (planned 2026)**.
 
 ---
