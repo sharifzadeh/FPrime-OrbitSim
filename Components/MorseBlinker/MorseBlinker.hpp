@@ -22,6 +22,12 @@ namespace Components {
           U32 cmdSeq,
           const Fw::CmdStringArg& message
       ) override;
+
+      // New handler for IMU status port (0 = stopped, 1 = started)
+      void imuStatusIn_handler(
+          FwIndexType portNum,
+          U8 status
+      ) override;
   };
 
 } // namespace Components

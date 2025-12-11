@@ -3,6 +3,7 @@
 // =======================================================================
 
 #include <Components/MorseBlinker/MorseBlinker.hpp>
+#include <Fw/Cmd/CmdString.hpp>
 
 #include <gpiod.h>
 
@@ -258,5 +259,29 @@ namespace Components {
       // Send OK response
       this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
+
+  // ----------------------------------------------------------------------
+  // IMU status handler: blink 'T' or 'F' in Morse when IMU starts/stops
+  // ----------------------------------------------------------------------
+
+ void MorseBlinker::imuStatusIn_handler(
+     FwIndexType portNum,
+     U8 status
+ ) {
+   (void) portNum;
+
+   // Map 0/1 → "F"/"T"
+   const char* msg = (status != 0U) ? "T" : "F";
+
+   // Reuse the existing BLINK_STRING command handler logic
+   Fw::CmdStringArg cmdArg(msg);
+
+   // Use a dummy opcode/cmdSeq since this is an internal trigger
+   const FwOpcodeType opcode = 0;
+   const U32 cmdSeq = 0;
+
+   this->BLINK_STRING_cmdHandler(opcode, cmdSeq, cmdArg);
+ }
+
 
 } // namespace Components

@@ -4,6 +4,13 @@ module OrbitSimDeployment {
   # Base ID Convention
   # ----------------------------------------------------------------------
   # All Base IDs follow the 8-digit hex format: 0xDSSCCxxx
+  #
+  # Where:
+  #   D   = Deployment digit (1 for this deployment)
+  #   SS  = Subtopology digits (00 for main topology, 01-05 for subtopologies)
+  #   CC  = Component digits (00, 01, 02, etc.)
+  #   xxx = Reserved for internal component items (events, commands, telemetry)
+  #
 
   module Default {
     constant QUEUE_SIZE = 10
@@ -39,6 +46,12 @@ module OrbitSimDeployment {
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 100
+
+  # IMU Driver Instance
+  instance imuDriver: Components.ImuDriver base id 0x300 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 90
 
   # Passive / other instances
   instance chronoTime: Svc.ChronoTime base id 0x10010000
@@ -90,6 +103,7 @@ module OrbitSimDeployment {
     instance comDriver
     instance cmdSeq
     instance morseBlinker
+    instance imuDriver
 
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
@@ -117,15 +131,15 @@ module OrbitSimDeployment {
       CdhCore.cmdDisp.seqCmdStatus -> ComCcsds.fprimeRouter.cmdResponseIn
     }
 
-    connections ComCcsds_FileHandling {
-      # File Downlink to Communication Queue
-      FileHandling.fileDownlink.bufferSendOut -> ComCcsds.comQueue.bufferQueueIn[ComCcsds.Ports_ComBufferQueue.FILE]
-      ComCcsds.comQueue.bufferReturnOut[ComCcsds.Ports_ComBufferQueue.FILE] -> FileHandling.fileDownlink.bufferReturn
-
-      # Router to File Uplink
-      ComCcsds.fprimeRouter.fileOut -> FileHandling.fileUplink.bufferSendIn
-      FileHandling.fileUplink.bufferSendOut -> ComCcsds.fprimeRouter.fileBufferReturnIn
-    }
+    # connections ComCcsds_FileHandling {
+    #  # File Downlink to Communication Queue
+    #  FileHandling.fileDownlink.bufferSendOut -> ComCcsds.comQueue.bufferQueueIn[ComCcsds.Ports_ComPacketQueue.FILE]
+    #  ComCcsds.comQueue.bufferReturnOut[ComCcsds.Ports_ComPacketQueue.FILE] -> FileHandling.fileDownlink.bufferReturn
+    #
+    #  # Router to File Uplink
+    #  ComCcsds.fprimeRouter.fileOut -> FileHandling.fileUplink.bufferSendIn
+    #  FileHandling.fileUplink.bufferSendOut -> ComCcsds.fprimeRouter.fileBufferReturnIn
+    # }
 
     connections Communications {
       # ComDriver buffer allocations
@@ -133,8 +147,8 @@ module OrbitSimDeployment {
       comDriver.deallocate    -> ComCcsds.commsBufferManager.bufferSendIn
 
       # ComDriver <-> ComStub (Uplink)
-      comDriver.$recv                   -> ComCcsds.comStub.drvReceiveIn
-      ComCcsds.comStub.drvReceiveReturnOut -> comDriver.recvReturnIn
+      comDriver.$recv                        -> ComCcsds.comStub.drvReceiveIn
+      ComCcsds.comStub.drvReceiveReturnOut   -> comDriver.recvReturnIn
 
       # ComStub <-> ComDriver (Downlink)
       ComCcsds.comStub.drvSendOut -> comDriver.$send
@@ -143,7 +157,7 @@ module OrbitSimDeployment {
 
     connections FileHandling_DataProducts {
       # Data Products to File Downlink
-      DataProducts.dpCat.fileOut -> FileHandling.fileDownlink.SendFile
+      DataProducts.dpCat.fileOut          -> FileHandling.fileDownlink.SendFile
       FileHandling.fileDownlink.FileComplete -> DataProducts.dpCat.fileDone
     }
 
@@ -158,13 +172,15 @@ module OrbitSimDeployment {
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
       rateGroup1.RateGroupMemberOut[3] -> ComCcsds.comQueue.run
       
-      # Connected MorseBlinker to RateGroup1 (Vital for execution)
+      # Connected MorseBlinker to RateGroup1 (optional)
       # rateGroup1.RateGroupMemberOut[4] -> morseBlinker.run
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
       rateGroup2.RateGroupMemberOut[0] -> cmdSeq.schedIn
+      rateGroup2.RateGroupMemberOut[1] -> imuDriver.schedIn
 
+    
       # Rate group 3
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup3] -> rateGroup3.CycleIn
       rateGroup3.RateGroupMemberOut[0] -> CdhCore.$health.Run
@@ -176,9 +192,14 @@ module OrbitSimDeployment {
 
     connections CdhCore_cmdSeq {
       # Command Sequencer
-      cmdSeq.comCmdOut -> CdhCore.cmdDisp.seqCmdBuff
+      cmdSeq.comCmdOut             -> CdhCore.cmdDisp.seqCmdBuff
       CdhCore.cmdDisp.seqCmdStatus -> cmdSeq.cmdResponseIn
     }
+
+    connections ImuToMorse {
+      imuDriver.imuStatusOut -> morseBlinker.imuStatusIn
+    }
+
 
   } # topology OrbitSimDeployment
 

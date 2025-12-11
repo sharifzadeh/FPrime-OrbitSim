@@ -46,5 +46,13 @@ module Components {
     @ Port for sending telemetry channels
     telemetry port tlmOut
 
+    # ----------------------------------------------------------------------
+    # IMU status input
+    # ----------------------------------------------------------------------
+
+    @ IMU status from ImuDriver (0=stopped/F, 1=started/T)
+    async input port imuStatusIn: ImuStatusPort
+
   }
+
 }

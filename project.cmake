@@ -3,6 +3,7 @@
 
 # Explicitly add each component directory
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Components/MorseBlinker")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Components/ImuDriver")
 
 # Deployment
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/OrbitSimDeployment")

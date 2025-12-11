@@ -55,6 +55,14 @@ module OrbitSimDeployment {
     priority 100
   
   # ----------------------------------------------------------------------
+  # ImuDriver Instance
+  # ----------------------------------------------------------------------
+  instance imuDriver: Components.ImuDriver base id 0x300 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 90
+
+  # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
 
