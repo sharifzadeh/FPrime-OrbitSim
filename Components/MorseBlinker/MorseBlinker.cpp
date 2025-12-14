@@ -162,8 +162,63 @@ std::string char_to_morse(char c) {
 }
 
 // Blink a full string as Morse code on GPIO 17
+// void blink_morse_string(const std::string& text) {
+//     OutputLine led("/dev/gpiochip0", 17, "MorseBlinker");
+
+//     if (!led.isValid()) {
+//         std::cerr << "[MorseBlinker] Failed to initialize GPIO line 17" << std::endl;
+//         return;
+//     }
+
+//     const useconds_t DOT          = 200000;        // 0.2 s
+//     const useconds_t DASH         = 3 * DOT;       // 0.6 s
+//     const useconds_t INTRA_SYMBOL = DOT;           // between dots/dashes
+//     const useconds_t INTER_LETTER = 3 * DOT;       // between letters
+//     const useconds_t INTER_WORD   = 7 * DOT;       // between words
+
+//     for (std::size_t i = 0; i < text.size(); ++i) {
+//         char c = text[i];
+
+//         if (c == ' ') {
+//             usleep(INTER_WORD);
+//             continue;
+//         }
+
+//         std::string code = char_to_morse(c);
+//         if (code.empty()) {
+//             continue; // skip unsupported characters
+//         }
+
+//         for (std::size_t j = 0; j < code.size(); ++j) {
+//             if (code[j] == '.') {
+//                 led.set(true);
+//                 usleep(DOT);
+//             } else if (code[j] == '-') {
+//                 led.set(true);
+//                 usleep(DASH);
+//             }
+//             led.set(false);
+
+//             // gap between symbols inside same letter
+//             if (j + 1 < code.size()) {
+//                 usleep(INTRA_SYMBOL);
+//             }
+//         }
+
+//         // gap between letters
+//         usleep(INTER_LETTER);
+//     }
+
+//     // Ensure LED off at the end
+//     led.set(false);
+// }
+
+// Blink a full string as Morse code on GPIO 17
 void blink_morse_string(const std::string& text) {
-    OutputLine led("/dev/gpiochip0", 17, "MorseBlinker");
+    // CHANGE: Added 'static' keyword.
+    // This ensures the GPIO line is requested ONLY ONCE when the program starts/first runs,
+    // and stays open. This prevents "resource busy" or exhaustion errors.
+    static OutputLine led("/dev/gpiochip0", 17, "MorseBlinker");
 
     if (!led.isValid()) {
         std::cerr << "[MorseBlinker] Failed to initialize GPIO line 17" << std::endl;
@@ -264,24 +319,46 @@ namespace Components {
   // IMU status handler: blink 'T' or 'F' in Morse when IMU starts/stops
   // ----------------------------------------------------------------------
 
- void MorseBlinker::imuStatusIn_handler(
-     FwIndexType portNum,
-     U8 status
- ) {
-   (void) portNum;
+void MorseBlinker::imuStatusIn_handler(
+    FwIndexType portNum,
+    U8 status
+) {
+  (void) portNum;
 
-   // Map 0/1 → "F"/"T"
-   const char* msg = (status != 0U) ? "T" : "F";
+  // Map status code → single-character Morse symbol selector:
+  //   0 -> "F"  (IMU stopped / fault)
+  //   1 -> "T"  (IMU healthy / tracking)
+  //   2 -> "N"  (noise / degraded SNR)
+  //   3 -> "E"  (error / out of expected range)
+  const char* msg = "?";
 
-   // Reuse the existing BLINK_STRING command handler logic
-   Fw::CmdStringArg cmdArg(msg);
+  switch (status) {
+    case 0U:
+      msg = "F";  // Stopped / fault
+      break;
+    case 1U:
+      msg = "T";  // Tracking / OK
+      break;
+    case 2U:
+      msg = "N";  // Noise / high variance
+      break;
+    case 3U:
+      msg = "E";  // Error / out-of-envelope
+      break;
+    default:
+      msg = "?";  // Unexpected code
+      break;
+  }
 
-   // Use a dummy opcode/cmdSeq since this is an internal trigger
-   const FwOpcodeType opcode = 0;
-   const U32 cmdSeq = 0;
+  // Reuse the existing BLINK_STRING command handler logic
+  Fw::CmdStringArg cmdArg(msg);
 
-   this->BLINK_STRING_cmdHandler(opcode, cmdSeq, cmdArg);
- }
+  // Internal trigger: dummy opcode/cmdSeq
+  const FwOpcodeType opcode = 0;
+  const U32 cmdSeq = 0;
+
+  this->BLINK_STRING_cmdHandler(opcode, cmdSeq, cmdArg);
+}
 
 
 } // namespace Components

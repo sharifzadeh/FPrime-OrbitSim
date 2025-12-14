@@ -3,6 +3,7 @@
 
 #include <Components/ImuDriver/ImuDriverComponentAc.hpp>
 #include <Fw/Types/BasicTypes.hpp>
+#include <Fw/Types/String.hpp>
 
 namespace Components {
 
@@ -12,53 +13,74 @@ namespace Components {
     ~ImuDriver() override;
 
    private:
-    // ------------------------------------------------------------------
-    // Configuration constants (simple LEO-like orbit model)
-    // ------------------------------------------------------------------
-    static constexpr F32 MU_EARTH          = 3.986004418e14F;  // [m^3/s^2]
-    static constexpr F32 R_EARTH           = 6378.0e3F;        // [m]
-    static constexpr F32 ORBIT_ALTITUDE    = 400.0e3F;         // [m]
-    static constexpr F32 SAMPLE_PERIOD_SEC = 0.01F;            // [s]
+    // Internal enums
 
-    // Small fake maneuver / motion scale (for "nice" plots)
-    static constexpr F32 ACCEL_LATERAL_SCALE = 0.1F;           // [m/s^2]
-    static constexpr F32 GYRO_SCALE          = 0.05F;          // [rad/s]
+    enum ImuState : U8 {
+      IMU_STATE_NEVER_STARTED = 0,
+      IMU_STATE_RUNNING       = 1,
+      IMU_STATE_STOPPED       = 2,
+      IMU_STATE_RESET         = 3
+    };
 
-    // ------------------------------------------------------------------
+    enum LastCommand : U8 {
+      CMD_NONE  = 0,
+      CMD_START = 1,
+      CMD_STOP  = 2,
+      CMD_RESET = 3
+    };
+
+    enum WorkflowError : U32 {
+      WF_OK                     = 0,
+      WF_NEED_START             = 1,
+      WF_ALREADY_STARTED        = 2,
+      WF_ALREADY_STOPPED        = 3,
+      WF_NEED_STOP_BEFORE_RESET = 4,
+      WF_DOUBLE_RESET           = 5,
+      WF_CONFIG_PARSE_ERROR     = 10,
+      WF_CONFIG_RANGE_ERROR     = 11,
+      WF_RESET_EMPTY_CONFIG     = 12
+    };
+
     // Internal state
-    // ------------------------------------------------------------------
 
-    // Whether IMU sampling is enabled
-    bool m_enabled;
+    bool        m_enabled;
+    ImuState    m_state;
+    LastCommand m_lastCommand;
+    bool        m_hasValidConfig;
 
-    // Number of samples since IMU_START
     U32 m_sampleCount;
 
-    // "Simulation time" since IMU_START [s]
-    F32 m_timeSec;
+    // accel [m/s^2]
+    F32 m_ax, m_ay, m_az;
+    // gyro [rad/s]
+    F32 m_gx, m_gy, m_gz;
 
-    // Orbital state (very simple circular orbit in ECI)
-    // r_ECI and v_ECI are stored in meters and m/s
-    F32 m_rEci[3];
-    F32 m_vEci[3];
+    F32 m_dt;
 
-    // Last simulated accelerometer readings [m/s^2]
-    F32 m_ax;
-    F32 m_ay;
-    F32 m_az;
+    // position [m]
+    F32 m_posX, m_posY, m_posZ;
+    // velocity [m/s]
+    F32 m_velX, m_velY, m_velZ;
 
-    // Last simulated gyroscope readings [rad/s]
-    F32 m_gx;
-    F32 m_gy;
-    F32 m_gz;
+    F32 m_accelNorm;
+    F32 m_gyroNorm;
 
-    // Simple constant biases for IMU (could later be parameters)
-    F32 m_accelBias[3];  // [m/s^2]
-    F32 m_gyroBias[3];   // [rad/s]
+    F32 m_accelNoiseThresh;
+    F32 m_gyroNoiseThresh;
 
-    // ------------------------------------------------------------------
+    U8  m_noiseFlag;
+
+    U8  m_configStatus;
+    U32 m_configError;
+
+    U8  m_workflowStatus;
+    U32 m_workflowErrorCode;
+
+    // 0=F, 1=T, 2=W, 3=E
+    U8  m_imuStatus;
+
     // Command handlers
-    // ------------------------------------------------------------------
+
     void IMU_START_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq
@@ -69,34 +91,64 @@ namespace Components {
         U32 cmdSeq
     ) override;
 
-    // ------------------------------------------------------------------
-    // Scheduler tick
-    // ------------------------------------------------------------------
+    void IMU_RESET_cmdHandler(
+        FwOpcodeType opCode,
+        U32 cmdSeq
+    ) override;
+
+    void IMU_SET_CONFIG_cmdHandler(
+        FwOpcodeType opCode,
+        U32 cmdSeq,
+        const Fw::CmdStringArg& config
+    ) override;
+
+    // Scheduler tick handler
+
     void schedIn_handler(
         FwIndexType portNum,
         U32 context
     ) override;
 
-    // ------------------------------------------------------------------
-    // Helper methods
-    // ------------------------------------------------------------------
+    // Helpers
 
-    //! Reset orbital and IMU state when IMU_START is called
+    bool parseConfig(
+        const Fw::CmdStringArg& config,
+        U32& errorCode,
+        F32& outDt,
+        F32& outAccelThresh,
+        F32& outGyroThresh
+    );
+
+    void applyConfig(
+        F32 dt,
+        F32 accelThresh,
+        F32 gyroThresh
+    );
+
     void resetState();
+    void updateHealthStatus();
 
-    //! Propagate a very simple circular orbit in the equatorial plane
-    void propagateOrbit(const F32 dt);
+    void publishConfigStatus(
+        U8 status,
+        U32 errorCode,
+        const char* text
+    );
 
-    //! Compute "ideal" IMU signals from orbital motion + small maneuvers
-    void computeIdealImu(
-        F32 accel[3],  // [m/s^2] in body frame
-        F32 gyro[3]    // [rad/s] in body frame
-    ) const;
+    void publishWorkflowStatus(
+        U8 status,
+        WorkflowError error,
+        const char* text
+    );
 
-    //! Add simple deterministic pseudo-noise + biases
-    void applyBiasAndNoise(
-        const F32 accelIdeal[3],
-        const F32 gyroIdeal[3]
+    void registerDuplicateCommand(
+        LastCommand cmd,
+        WorkflowError& outError,
+        const char*& outText
+    );
+
+    void handleConfigError(
+        WorkflowError error,
+        const char* text
     );
   };
 
