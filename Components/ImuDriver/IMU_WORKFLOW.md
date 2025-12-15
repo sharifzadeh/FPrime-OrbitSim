@@ -91,7 +91,7 @@ If $||a|| > Threshold_{accel}$, a **Noise Flag** is raised, setting the system H
 ## 5. Deployment Requirements
 To support standard JSON payloads, the F Prime configuration header must be overridden.
 
-**File:** `config/FpConstants.fpp` (or `FpConfig.h` depending on version)
+**File:** [`config/FpConstants.fpp`](../../config/FpConstants.fpp) (or `FpConfig.h` depending on version)
 ```fpp
 @ Specifies the maximum size of a string in a command argument
 @ (Increased from 40 to 256 to support long JSON config payloads)
