@@ -3,7 +3,7 @@
 ## Overview
 The `ImuDriver` is a core component of the OrbitSim project designed to simulate an Inertial Measurement Unit (IMU) within the F' (F Prime) framework. It provides real-time simulation of accelerometer and gyroscope data, numerical integration for position/velocity, and a strict state machine for fault-tolerant operation.
 
-This component is designed with **Hardware-in-the-Loop (HIL)** capabilities in mind, utilizing a `MorseBlinker` component to provide physical feedback via an LED/Buzzer based on the internal system health.
+This component is designed with **Hardware-in-the-Loop (HIL)** capabilities in mind. The `imuStatusOut` port encodes system health as integers which are mapped to characters: **0 = 'F', 1 = 'T', 2 = 'W', 3 = 'E'**. These signals are converted to Morse code by the downstream `MorseBlinker` component to provide physical feedback via an LED.
 
 ## 1. System State Machine
 The driver operates based on a strict 4-state workflow to ensure data integrity and prevent race conditions.
@@ -43,6 +43,11 @@ Accepts a JSON string payload to dynamically tune simulation parameters.
 * **Payload Example:** `{"dt": 0.01, "accelNoiseThresh": 20.0, "gyroNoiseThresh": 1.0}`
 * **System Requirement:** F' Config `FW_CMD_STRING_MAX_SIZE` must be set to **256** to support long JSON strings.
 
+**Valid Parameter Ranges:**
+* **`dt`**: `0.0 < value <= 0.1` (Time step in seconds)
+* **`accelNoiseThresh`**: `0.0 < value <= 100.0`
+* **`gyroNoiseThresh`**: `0.0 < value <= 10.0`
+
 ---
 
 ## 3. Strict JSON Configuration Parser
@@ -55,13 +60,11 @@ The component implements a custom, robust JSON parser with the following validat
 
 ### Error Handling Policies
 
-| Scenario | Result Code | System Action | LED Feedback |
-| :--- | :--- | :--- | :--- |
-| **Format Error** (Bad JSON, unknown key) | `FORMAT_ERROR` (3) | **STOP** System | Blinks **'E'** (Error) |
-| **Range Warning** (Values out of bounds) | `VALIDATION_ERROR` (2) | **Continue** Running | Blinks **'W'** (Warning) |
-| **Valid Config** | `OK` (0) | Update Params | Blinks **'T'** |
-
-*Note: Range limits are `dt` (0.0-0.1s), `accelNoiseThresh` (0-100), `gyroNoiseThresh` (0-10).*
+| Scenario | Result Code (GDS) | Internal Error State (C++) | System Action | LED Feedback |
+| :--- | :--- | :--- | :--- | :--- |
+| **Format Error** (Bad JSON, unknown key) | `FORMAT_ERROR` (3) | `m_configError = WF_CONFIG_PARSE_ERROR` | **STOP** System | Blinks **'E'** |
+| **Range Warning** (Values out of bounds) | `VALIDATION_ERROR` (2) | `m_configError = WF_CONFIG_RANGE_ERROR` | **Continue** Running | Blinks **'W'** |
+| **Valid Config** | `OK` (0) | `WF_OK` | Update Params | Blinks **'T'** |
 
 ---
 
@@ -88,7 +91,8 @@ If $||a|| > Threshold_{accel}$, a **Noise Flag** is raised, setting the system H
 ## 5. Deployment Requirements
 To support standard JSON payloads, the F Prime configuration header must be overridden.
 
-**File:** `config/FpConfig.h`
-```c
-// Increased from default (40) to support full JSON payloads
-#define FW_CMD_STRING_MAX_SIZE 256
+**File:** `config/FpConstants.fpp` (or `FpConfig.h` depending on version)
+```fpp
+@ Specifies the maximum size of a string in a command argument
+@ (Increased from 40 to 256 to support long JSON config payloads)
+constant FW_CMD_STRING_MAX_SIZE = 256
