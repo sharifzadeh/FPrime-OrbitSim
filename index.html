@@ -1,59 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FPrime OrbitSim</title>
-  <link rel="icon" type="image/png" href="assets/dream-on-space-logo.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OrbitSim — Mission-Real Orbit Simulation on F´</title>
+  <meta name="description" content="OrbitSim: a NASA JPL F´ (F Prime) demo that makes orbital dynamics mission-real through command/telemetry loops, deterministic scheduling, and hardware-linked observability." />
+
   <style>
-    body {
-      background: radial-gradient(circle at top, #0b3d91, #000000);
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 15vh;
-      color: white;
+    :root{
+      --bg0:#0b1220;
+      --bg1:#0f1a2b;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --line:rgba(255,255,255,.10);
+      --accent:#d7a44a;
+      --accent2:#f2c56f;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
-    h1 {
-      font-size: 2.8rem;
-      letter-spacing: 1px;
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(215,164,74,.16), transparent 55%),
+        radial-gradient(900px 500px at 90% 20%, rgba(70,140,255,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
     }
-    h2 {
-      font-size: 1.4rem;
-      margin-top: 10px;
-      opacity: 0.85;
+
+    a{color:inherit; text-decoration:none}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px;}
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius2);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
-    p {
-      margin-top: 30px;
-      font-size: 1rem;
-      opacity: 0.7;
+
+    .brand{display:flex; align-items:center; gap:12px;}
+
+    .brand h1{font-size:16px; margin:0; line-height:1.15}
+    .brand p{margin:0; font-size:12.5px; color:var(--muted)}
+
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+
+    .pill{
+      font-size:13px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      transition:.15s ease;
     }
-    .orbit {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #ffd700;
+    .pill:hover{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.20);
+      background:rgba(255,255,255,.04)
+    }
+
+    .hero{
+      margin-top:18px;
+      padding:22px 20px;
+      border-radius:var(--radius2);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.5px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 3px rgba(215,164,74,.18)
+    }
+
+    .hero h2{
+      margin:14px 0 10px;
+      font-size:40px;
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:840px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.55;
+    }
+
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:11px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      font-size:14px;
+      transition:.15s ease;
+    }
+
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(215,164,74,.28), rgba(215,164,74,.14));
+      border-color: rgba(215,164,74,.42);
+    }
+
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.04)}
+    .btn.primary:hover{background: linear-gradient(180deg, rgba(215,164,74,.35), rgba(215,164,74,.18))}
+
+    .grid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr;}
+      .hero h2{font-size:32px}
+      .nav{justify-content:flex-start}
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.30);
+      backdrop-filter: blur(10px);
+    }
+
+    .card h3{margin:0 0 10px; font-size:16px}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+
+    .bullets{
+      margin:12px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px
+    }
+
+    .thumb{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(600px 200px at 20% 20%, rgba(215,164,74,.20), transparent 60%),
+        radial-gradient(400px 260px at 70% 60%, rgba(80,140,255,.20), transparent 60%),
+        rgba(255,255,255,.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:rgba(255,255,255,.60);
+      font-weight:600;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .thumb .play{
+      width:74px;
+      height:74px;
+      border-radius:18px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.20);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .thumb .play:before{
+      content:"";
+      display:block;
+      margin-left:4px;
+      width:0;height:0;
+      border-left:18px solid rgba(255,255,255,.86);
+      border-top:12px solid transparent;
+      border-bottom:12px solid transparent;
+    }
+
+    .mini{margin-top:10px; font-size:12.5px; color:var(--muted)}
+
+    .section{margin-top:14px;}
+
+    .section h4{
+      margin:0 0 10px;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:rgba(255,255,255,.58);
+    }
+
+    .code{
+      font-family:var(--mono);
+      font-size:12.8px;
+      line-height:1.55;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:14px;
+      overflow:auto;
+      color:rgba(255,255,255,.82);
+    }
+
+    .footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.55);
+      font-size:12.5px;
+      padding:12px 2px;
+    }
+
+    .hr{height:1px; background:rgba(255,255,255,.08); margin:12px 0}
+
+    /* Logo in topbar */
+    .logo-img{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+
+    /* Watermark in hero */
+    .hero-watermark{
+      position:absolute;
+      right:-90px;
+      top:-70px;
+      width:520px;
+      opacity:0.07;
+      pointer-events:none;
+      transform: rotate(10deg);
+      filter: saturate(0.9) contrast(1.05);
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo-img" src="./dream-on-space-logo.png" alt="dream-on.space logo">
+        <div>
+          <h1>OrbitSim</h1>
+          <p>Mission-real orbit simulation on Raspberry Pi, built with NASA JPL F´</p>
+        </div>
+      </div>
 
-  <img src="assets/dream-on-space-logo.png" alt="dream-on.space logo" width="150" style="margin-bottom: 25px;">
+      <div class="nav">
+        <a class="pill" href="https://orbitlab.dream-on.space/" target="_blank" rel="noreferrer">OrbitLab</a>
+        <a class="pill" href="https://orbitsim.dream-on.space/" target="_blank" rel="noreferrer">OrbitSim</a>
+        <a class="pill" href="https://orbitdsp.dream-on.space/" target="_blank" rel="noreferrer">OrbitDSP</a>
+        <a class="pill" href="#pipeline">Pipeline</a>
+      </div>
+    </div>
 
-  <h1>🚀 FPrime OrbitSim</h1>
-  <h2>Embedded Orbital Simulation on Raspberry Pi</h2>
-  <p>Hardware-in-the-loop prototype<br>
-     for <a href="https://fprime.jpl.nasa.gov/"
-          target="_blank" 
-     style="color: #FFD700; text-decoration: none; font-weight: bold; font-size: 16px;"
-     > NASA JPL F' Workshop – February 2026</a></p>
+    <div class="hero">
+      <img class="hero-watermark" src="./dream-on-space-logo.png" alt="" aria-hidden="true">
 
-  <p style="margin-top: 30px;">
-  <a href="https://github.com/sharifzadeh/FPrime-OrbitSim" 
-     target="_blank" 
-     style="color: #FFD700; text-decoration: none; font-weight: bold; font-size: 16px;">
-    🔗 View on GitHub →
-  </a>
-</p>
+      <div class="badge"><span class="dot"></span> Flight-Software style observability: Commands • Telemetry • Events • Deterministic scheduler</div>
 
+      <h2>Make orbital dynamics “mission-real” inside Flight Software.</h2>
+
+      <p>
+        OrbitSim is a compact F´ demo that turns orbital mechanics into a flight-software workflow: deterministic timing,
+        command/telemetry loops, and mission-ops style observability. It is designed for teaching and for demoing how
+        students’ equations become operational behavior inside embedded flight software.
+      </p>
+
+      <div class="btnrow">
+        <a class="btn primary" href="https://www.youtube.com/watch?v=_6zPqiG7Rfw" target="_blank" rel="noreferrer">▶ Watch the demo video</a>
+        <a class="btn" href="https://github.com/sharifzadeh/FPrime-OrbitSim" target="_blank" rel="noreferrer">GitHub repository</a>
+        <a class="btn" href="#pipeline">See architecture</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Why this matters</h3>
+        <p>
+          In spacecraft and GSE-like workflows, “physics” is only half the story. The other half is how flight software
+          makes those computations observable, testable, and safe under timing constraints.
+        </p>
+        <ul class="bullets">
+          <li>Deterministic scheduler loop → repeatable timing and consistent behavior</li>
+          <li>Command-driven operation → “ops mindset” instead of ad-hoc scripts</li>
+          <li>Telemetry + events → traceable state changes and easy fault isolation</li>
+          <li>Hardware-ready demo path → easy to integrate with GPIO/LED indicators</li>
+        </ul>
+
+        <div class="section">
+          <h4>What you can show in 60 seconds</h4>
+          <div class="code">
+1) Set scenario / mode (orbit propagation, state outputs)
+2) Issue a command (change parameters, start/stop loop)
+3) Observe telemetry trends (altitude, velocity, error metrics)
+4) Point to deterministic scheduler + event log
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Video (2 min)</h3>
+        <a class="thumb" href="https://www.youtube.com/watch?v=_6zPqiG7Rfw" target="_blank" rel="noreferrer" aria-label="Watch OrbitSim demo video">
+          <div class="play" aria-hidden="true"></div>
+        </a>
+        <div class="mini">Tip: embed the video inside PowerPoint to keep the 5-minute talk frictionless.</div>
+
+        <div class="hr"></div>
+
+        <h3>Links</h3>
+        <ul class="bullets">
+          <li><a href="https://github.com/sharifzadeh/FPrime-OrbitSim" target="_blank" rel="noreferrer">OrbitSim source on GitHub</a></li>
+          <li><a href="https://orbitlab.dream-on.space/" target="_blank" rel="noreferrer">OrbitLab home</a></li>
+          <li><a href="https://orbitdsp.dream-on.space/" target="_blank" rel="noreferrer">OrbitDSP companion demo</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card section" id="pipeline">
+      <h3>Pipeline / architecture</h3>
+      <p>
+        OrbitSim follows a flight-software pattern: scheduled compute → state update → publish telemetry → log events.
+        This keeps the demo “mission-real” and easy to extend to hardware I/O.
+      </p>
+
+      <div class="section">
+        <h4>High-level block diagram (conceptual)</h4>
+        <div class="code">
+Scheduler (Svc.Sched)
+   ↓
+Orbit propagator (state update)
+   ↓
+Telemetry publish (position/velocity/errors)
+   ↓
+Event log (mode changes, command execution, anomalies)
+   ↓
+(Optional) hardware status out (LED / GPIO)
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Teaching angle</h4>
+        <ul class="bullets">
+          <li>Students can connect orbital equations to real-time execution constraints (dt, stability, drift).</li>
+          <li>Telemetry makes “what the code thinks” visible; events make “why it changed” visible.</li>
+          <li>Pairs naturally with OrbitDSP (filters/noise/fault injection) for signal+systems integration.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>© dream-on.space — OrbitSim</div>
+      <div>Built to demonstrate “physics → flight software → observability”.</div>
+    </div>
+  </div>
 </body>
 </html>
-
