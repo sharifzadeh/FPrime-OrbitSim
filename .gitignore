@@ -46,3 +46,4 @@ logs/
 build-artifacts/
 build-fprime-automatic-native/
 
+.DS_Store
